@@ -28,9 +28,13 @@ from mindspore import load_distributed_checkpoint
 from pathlib2 import Path
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../")))
-from pangu_alpha.model import LearningRate, TrainingMonitor, PANGUALPHA_BC, PANGUALPHA_Model, PANGUALPHAConfig, \
-    get_ckpt_file_list, finetune_load_file, args_utils, set_parse, JIEBATokenizer
-from pangu_alpha.afqmc.src.data_process import GetDataGenerator, ProcessData
+from src.model.pangu_alpha_model import PanguAlpha_BC, PanguAlpha_Model
+from src.model.pangu_alpha_model_config import PanguAlphaConfig, set_parse
+from src.model.base_modules import LearningRate, TrainingMonitor
+from src.utils.model_utils import get_ckpt_file_list, finetune_load_file
+from src.utils import args_utils
+from src.utils.tokenizer_jieba import JIEBATokenizer
+from src.afqmc.main.data_process import GetDataGenerator, ProcessData
 
 os.environ['HCCL_CONNECT_TIMEOUT'] = '1800'
 rank_id = int(os.getenv('RANK_ID', default=0))
@@ -66,7 +70,7 @@ def finetuning(args_config):
     data_parallel_num = int(device_num / model_parallel_num)
     per_batch_size = args_config.per_batch_size
     batch_size = per_batch_size * device_num
-    config = PANGUALPHAConfig(
+    config = PanguAlphaConfig(
         data_parallel_num=data_parallel_num,
         model_parallel_num=model_parallel_num,
         batch_size=batch_size,
@@ -92,8 +96,8 @@ def finetuning(args_config):
     )
     print(config, flush=True)
 
-    pangu_backbone = PANGUALPHA_Model(config)
-    pangu = PANGUALPHA_BC(config, pangu_backbone)
+    pangu_backbone = PanguAlpha_Model(config)
+    pangu = PanguAlpha_BC(config, pangu_backbone)
     lr = LearningRate(learning_rate=6e-5,
                       end_learning_rate=6e-7,
                       warmup_steps=1000,

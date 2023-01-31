@@ -30,9 +30,9 @@ DEVICE_START=$3
 export RANK_SIZE=$RANK_SIZE
 export RANK_TABLE_FILE=$1
 
-data_path=/pangu_alpha/pangu/afqmc/dataset/
-output_path=/pangu_alpha/pycharmproject/output/afqmc/infer/
-ckpt_path=/pangu_alpha/pangu/2B6/
+data_path=/store0/pangu_alpha/afqmc/dataset/
+output_path=/store0/pangu_alpha/output_pangu/
+ckpt_path=/store0/pangu_alpha/pretrained_models/2B6/
 infer_model_config=${LOCAL_PATH}/configs/infer_model_config_pangu_afqmc.yaml
 
 for ((i = 0; i < ${RANK_SIZE}; i++)); do
