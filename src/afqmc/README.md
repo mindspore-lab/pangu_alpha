@@ -36,7 +36,7 @@ bash run_finetune_dist.sh /path/hccl_xp_xxxx.json [DEVICE_NUM] [DEVICE_START]
 ```bash
 # 单卡运行
 tk evaluate --quiet \
-	    --boot_file_path=/pangu/tk-models/models/pangu_alpha/afqmc/src/evaluate_main.py \
+	    --boot_file_path=/pangu_alpha/src/afqmc/main/evaluate_main.py \
 	    --data_path=/pangu/afqmc/dataset/ \
 	    --output_path=/pangu/output/afqmc/eval/ \
 	    --ckpt_path=/store0/pangu/2B6/ \
@@ -51,7 +51,7 @@ bash run_eval_dist.sh /path/hccl_xp_xxxx.json [DEVICE_NUM] [DEVICE_START]
 ```bash
 # 单卡运行
 tk infer --quiet \
-	 --boot_file_path=/pangu/tk-models/models/pangu_alpha/afqmc/src/infer_main.py \
+	 --boot_file_path=/pangu_alpha/src/afqmc/main/infer_main.py \
 	 --data_path=/pangu/afqmc/dataset/ \
 	 --output_path=/pangu/output/afqmc/eval/ \
 	 --ckpt_path=/store0/pangu/2B6/ \
