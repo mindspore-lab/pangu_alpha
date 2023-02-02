@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,18 +23,16 @@ import os
 import re
 from functools import partial
 from multiprocessing import Pool, current_process
+
 import numpy as np
-
 from mindspore.mindrecord import FileWriter
-from src.tokenization_jieba import JIEBATokenizer
-
-
+from src.utils.tokenization_jieba import JIEBATokenizer
 
 
 def chunks(lst, n):
     """ yield n sized chunks from list"""
     for i in range(0, len(lst), n):
-        yield lst[i:i+n]
+        yield lst[i:i + n]
 
 
 def package_file(it, n):
@@ -78,7 +76,7 @@ def clean_wikitext(string):
     string = string.replace("= = = =", "====")
     string = string.replace("= = =", "===")
     string = string.replace("= =", "==")
-    string = string.replace(" "+chr(176)+" ", chr(176))
+    string = string.replace(" " + chr(176) + " ", chr(176))
     string = string.replace(" \n", "\n")
     string = string.replace("\n ", "\n")
     string = string.replace(" N ", " 1 ")
@@ -178,13 +176,12 @@ if __name__ == '__main__':
     parser.add_argument('--eot', type=int, default=3, help="Eod of text depends on the vocab file.")
     parser.add_argument('--data_column_name', type=str, default='input_ids')
 
-
     args = parser.parse_args()
 
     out_dir, out_file = os.path.split(os.path.abspath(args.output_file))
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
-    schema = {args.data_column_name: {"type": "int32", "shape": [-1]},}
+    schema = {args.data_column_name: {"type": "int32", "shape": [-1]}, }
     writer = FileWriter(file_name=args.output_file,
                         shard_num=args.file_partition)
     writer.add_schema(schema, args.dataset_type)

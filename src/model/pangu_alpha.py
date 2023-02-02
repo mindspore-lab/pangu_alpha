@@ -1,4 +1,4 @@
-# Copyright 2021 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -489,9 +489,7 @@ class PanguAlphaWithLoss2(nn.Cell):
         self.slice = P.StridedSlice().shard(((dp, 1),))
         self.not_equal = P.NotEqual().shard(((dp, 1), ()))
         self.batch_size = config.batch_size
-        self.len = config.seq_length
-        self.eod_reset = config.eod_reset
-        self.slice2 = P.StridedSlice().shard(((dp, 1, 1),))
+        self.seq_length = config.seq_length
         self.get_attention_mask = AttentionMask(config.seq_length)
         self.expand = P.ExpandDims()
         self.pad_token = config.pad_token
@@ -499,11 +497,11 @@ class PanguAlphaWithLoss2(nn.Cell):
     def construct(self, input_ids, mask_ids_input, input_position=None, attention_mask=None):
         tokens = self.slice(input_ids, (0, 0), (self.batch_size, -1), (1, 1))
         input_mask = F.cast(self.not_equal(tokens, self.pad_token), mstype.float32)
-        input_position = F.tuple_to_array(F.make_range(self.len))
+        input_position = F.tuple_to_array(F.make_range(self.seq_length))
         input_position = P.Tile()(self.expand(input_position, 0), (self.batch_size, 1))
         attention_mask = self.get_attention_mask(input_mask)
         logits = self.network(tokens, input_position, attention_mask)
-        labels = self.slice(input_ids, (0, 1), (self.batch_size, self.len + 1), (1, 1))
+        labels = self.slice(input_ids, (0, 1), (self.batch_size, self.seq_length + 1), (1, 1))
         output = self.loss(logits, labels, mask_ids_input)
         return output
 
@@ -528,12 +526,8 @@ class PanguAlphaLossWithPrompt(Cell):
         self.network = network
         self.pad_token = config.pad_token
         self.loss = loss
-
         self.slice = P.StridedSlice().shard(((dp, 1),))
         self.not_equal = P.NotEqual().shard(((dp, 1), ()))
-        self.batch_size = config.batch_size
-        self.len = config.seq_length
-        self.slice2 = P.StridedSlice().shard(((dp, 1, 1),))
         self.micro_batch_step = 1
         if config.parallel_config.pipeline_stage > 1:
             self.micro_batch_step = config.parallel_config.micro_batch_num
@@ -546,7 +540,7 @@ class PanguAlphaLossWithPrompt(Cell):
         r"""Forward process of the pangu alpha model"""
         tokens = input_ids
         input_mask = F.cast(self.not_equal(tokens, self.pad_token), mstype.float32)
-        input_position = F.tuple_to_array(F.make_range(self.len))
+        input_position = F.tuple_to_array(F.make_range(self.seq_length))
         input_position = P.Tile()(self.expand(input_position, 0), (self.batch_size, 1))
 
         input_mask_a = F.cast(self.equal(prompt_ids, self.pad_token), mstype.float32)
@@ -686,17 +680,17 @@ class PanguAlpha_BC(nn.Cell):
         self.head = PANGUALPHA_BCHead(config)
         dp = config.parallel_config.data_parallel
         self.not_equal = P.NotEqual().shard(((dp, 1), ()))
+        self.batch_size = config.batch_size
+        self.len = config.seq_length
+        self.get_attention_mask = AttentionMask(config.seq_length)
+        self.expand = P.ExpandDims()
 
-    # input_ids,
-    # input_position,
-    # encoder_masks,
-    # init_reset = True,
-    # batch_valid_length = None
     def construct(self, input_ids, input_mask=None, input_position=None, attention_mask=None, past=None, eos_token=9):
         if input_mask is None:
             input_mask = F.cast(self.not_equal(input_ids, F.cast(eos_token, mstype.int32)), mstype.float32)
         input_position = F.tuple_to_array(F.make_range(self.len))
         input_position = P.Tile()(self.expand(input_position, 0), (self.batch_size, 1))
+        attention_mask = self.get_attention_mask(input_mask)
         output_states, _, _ = self.backbone(input_ids, input_position, attention_mask)
         logits = F.cast(self.head(output_states), mstype.float32)
         return logits
