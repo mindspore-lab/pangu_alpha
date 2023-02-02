@@ -1,0 +1,13 @@
+jieba==0.42.1
+mindspore-ascend>=1.9.0
+numpy==1.24.1
+pathlib2==2.3.7.post1
+pytest==7.2.1
+PyYAML==6.0
+requests==2.28.1
+scipy==1.10.0
+sentencepiece==0.1.97
+six==1.16.0
+tqdm==4.64.1
+urllib3==1.26.13
+
