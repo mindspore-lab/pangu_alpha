@@ -616,16 +616,28 @@ class EvalNet_p(nn.Cell):
         outputs: Tensor, corresponding output for different tasks
     """
 
-    def __init__(self, backbone, generate=False):
+    def __init__(self, config, backbone, generate=False):
         super(EvalNet_p, self).__init__(auto_prefix=False)
         self.backbone = backbone
+        dp = config.parallel_config.data_parallel
+        self.pad_token = config.pad_token
+        self.not_equal = P.NotEqual().shard(((dp, 1), ()))
+        self.get_attention_mask = AttentionMask(config.seq_length)
+        self.seq_length = config.seq_length
+        self.batch_size = config.batch_size
+        self.expand = P.ExpandDims()
         self.argmax = P.Argmax()
         self.generate = generate
 
     def construct(self, input_ids):
         """evaluation net"""
-        input_mask = F.cast(F.not_equal(input_ids, 6), mstype.float32)
-        logits = self.backbone(input_ids, input_mask)
+        tokens = input_ids
+        # input_mask = F.cast(F.not_equal(input_ids, 6), mstype.float32)
+        input_mask = F.cast(self.not_equal(tokens, self.pad_token), mstype.float32)
+        input_position = F.tuple_to_array(F.make_range(self.seq_length))
+        input_position = P.Tile()(self.expand(input_position, 0), (self.batch_size, 1))
+        attention_mask = self.get_attention_mask(input_mask)
+        logits = self.backbone(input_ids, input_position, attention_mask)
         if self.generate:
             outputs = nn.LogSoftmax()(logits)
             outputs = F.tensor_pow(np.e, outputs)
@@ -648,15 +660,14 @@ class PANGUALPHA_BCHead(nn.Cell):
 
     def __init__(self, config):
         super(PANGUALPHA_BCHead, self).__init__()
-        self.hidden_size = config.hidden_size
         self.dtype = config.softmax_compute_type
+        self.batch_size = config.batch_size
         self.cast = P.Cast()
         self.mapping = nn.Dense(config.hidden_size * config.seq_length, config.label_size).to_float(
             config.softmax_compute_type)
 
     def construct(self, state):
-        batch = state.shape[0]
-        state = P.Reshape()(state, (batch, -1))
+        state = P.Reshape()(state, (self.batch_size, -1))
         logits = self.mapping(state)
         return logits
 
