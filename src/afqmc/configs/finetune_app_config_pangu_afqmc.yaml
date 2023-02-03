@@ -5,8 +5,8 @@ scenario:
     iam_endpoint: https://iam-pub.cn-central-221.ovaijisuan.com
     obs_endpoint: https://obs.cn-central-221.ovaijisuan.com
     modelarts_endpoint: https://modelarts.cn-central-221.ovaijisuan.com
-    region_name: cn-central-221
-    project_id: 52f4bcebc23740a4a924ab67c6eeafcc
+    region_name: ****
+    project_id: ****
 
     # 作业相关配置
     data_path: obs://path/nlp_task_dataset/AFQMC/  # input data
@@ -18,6 +18,6 @@ scenario:
     user_image_url: ****
 
     # 计算资源配置
-    pool_id: poole25d123d   # 专属资源池id, 共享资源池为None
+    pool_id: ****   # 专属资源池id, 共享资源池为None
     node_num: 1
     device_num: 4   # 如果为专属池，只能填8卡。
