@@ -29,9 +29,9 @@ DEVICE_START=$3
 export RANK_SIZE=$RANK_SIZE
 export RANK_TABLE_FILE=$1
 
-data_path=/path/pangu/afqmc/dataset/
-output_path=/path/pycharmproject/output/afqmc_13B/eval/
-ckpt_path=/path/pangu/13B/
+data_path=/store0/pangu_alpha/afqmc/dataset/
+output_path=/store0/pangu_alpha/output_pangu/
+ckpt_path=/store0/pangu_alpha/pretrained_models/13B/
 model_config_path=${LOCAL_PATH}/configs/eval_model_config_pangu_13B_afqmc.yaml
 
 for ((i = 0; i < ${RANK_SIZE}; i++)); do

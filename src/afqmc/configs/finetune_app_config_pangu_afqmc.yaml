@@ -9,13 +9,13 @@ scenario:
     project_id: 52f4bcebc23740a4a924ab67c6eeafcc
 
     # 作业相关配置
-    data_path: obs://chenzeng-test/nlp_task_dataset/AFQMC/  # input data
-    output_path: obs://chenzeng-test/task_output/finetune/  # model output, ckpt...
-    code_url: obs://chenzeng-test/tk_models/models/pangu_alpha/ # model scripts
-    boot_file_path: obs://chenzeng-test/tk_models/models/pangu_alpha/afqmc/src/finetune_main.py
-    pretrained_model_path: obs://chenzeng-test/pangu_ckpt/cache/2B6/
-    log_path: obs://chenzeng-test/log/finetune/ # log
-    user_image_url: mindxsdk/fmtk-ma:py_3.9-ms_1.8.1_cann_5.1.RC2-euler_2.8.3-aarch64-d910-20221110142805
+    data_path: obs://path/nlp_task_dataset/AFQMC/  # input data
+    output_path: obs://patht/task_output/finetune/  # model output, ckpt...
+    code_url: obs://path/tk_models/models/pangu_alpha/ # model scripts
+    boot_file_path: obs://path/tk_models/models/pangu_alpha/afqmc/src/finetune_main.py
+    pretrained_model_path: obs://path/pangu_ckpt/cache/2B6/
+    log_path: obs://path/log/finetune/ # log
+    user_image_url: ****
 
     # 计算资源配置
     pool_id: poole25d123d   # 专属资源池id, 共享资源池为None
