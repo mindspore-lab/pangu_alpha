@@ -1,0 +1,23 @@
+scenario:
+
+  modelarts:
+    # 计算中心region配置
+    iam_endpoint: https://iam-pub.cn-central-221.ovaijisuan.com
+    obs_endpoint: https://obs.cn-central-221.ovaijisuan.com
+    modelarts_endpoint: https://modelarts.cn-central-221.ovaijisuan.com
+    region_name: ****
+    project_id: ****
+
+    # 作业相关配置
+    data_path: obs://path/nlp_task_dataset/AFQMC/  # input data
+    output_path: obs://patht/task_output/finetune/  # model output, ckpt...
+    code_url: obs://path/tk_models/models/pangu_alpha/ # model scripts
+    boot_file_path: obs://path/tk_models/models/pangu_alpha/afqmc/src/finetune_main.py
+    pretrained_model_path: obs://path/pangu_ckpt/cache/2B6/
+    log_path: obs://path/log/finetune/ # log
+    user_image_url: ****
+
+    # 计算资源配置
+    pool_id: ****   # 专属资源池id, 共享资源池为None
+    node_num: 1
+    device_num: 4   # 如果为专属池，只能填8卡。
