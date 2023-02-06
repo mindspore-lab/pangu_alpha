@@ -1,0 +1,71 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Languages>
+        <language minSize="1506" name="Python" />
+      </Languages>
+    </inspection_tool>
+    <inspection_tool class="PyBroadExceptionInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="30">
+            <item index="0" class="java.lang.String" itemvalue="msgpack_numpy" />
+            <item index="1" class="java.lang.String" itemvalue="cytoolz" />
+            <item index="2" class="java.lang.String" itemvalue="unidecode" />
+            <item index="3" class="java.lang.String" itemvalue="lz4" />
+            <item index="4" class="java.lang.String" itemvalue="inflect" />
+            <item index="5" class="java.lang.String" itemvalue="pathlib2" />
+            <item index="6" class="java.lang.String" itemvalue="sympy" />
+            <item index="7" class="java.lang.String" itemvalue="lmdb" />
+            <item index="8" class="java.lang.String" itemvalue="msgpack" />
+            <item index="9" class="java.lang.String" itemvalue="protobuf" />
+            <item index="10" class="java.lang.String" itemvalue="scipy" />
+            <item index="11" class="java.lang.String" itemvalue="opencv-python" />
+            <item index="12" class="java.lang.String" itemvalue="sklearn" />
+            <item index="13" class="java.lang.String" itemvalue="packaging" />
+            <item index="14" class="java.lang.String" itemvalue="numpy" />
+            <item index="15" class="java.lang.String" itemvalue="psutil" />
+            <item index="16" class="java.lang.String" itemvalue="pandas" />
+            <item index="17" class="java.lang.String" itemvalue="easydict" />
+            <item index="18" class="java.lang.String" itemvalue="tables" />
+            <item index="19" class="java.lang.String" itemvalue="asttokens" />
+            <item index="20" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="21" class="java.lang.String" itemvalue="pillow" />
+            <item index="22" class="java.lang.String" itemvalue="astunparse" />
+            <item index="23" class="java.lang.String" itemvalue="pycocotools" />
+            <item index="24" class="java.lang.String" itemvalue="mindspore" />
+            <item index="25" class="java.lang.String" itemvalue="ftfy" />
+            <item index="26" class="java.lang.String" itemvalue="regex" />
+            <item index="27" class="java.lang.String" itemvalue="sentencepiece" />
+            <item index="28" class="java.lang.String" itemvalue="tqdm" />
+            <item index="29" class="java.lang.String" itemvalue="pyyaml" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E402" />
+          <option value="E731" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N801" />
+          <option value="N806" />
+          <option value="N802" />
+          <option value="N803" />
+          <option value="N813" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="ShellCheck" enabled="true" level="ERROR" enabled_by_default="true">
+      <shellcheck_settings value="SC2004,SC2086" />
+    </inspection_tool>
+  </profile>
+</component>
