@@ -32,7 +32,7 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 安装过程遇到问题请参考[此文档](https://gitee.com/foundation-models/tk-models/blob/master/TuningKit/%E5%BE%AE%E8%B0%83%E7%BB%84%E4%BB%B6(%E4%BA%91%E4%B8%8A%E5%9C%BA%E6%99%AF).md)解决。
 
 
-## 五、支持下游任务
+## 四、支持下游任务
 
 | 下游任务      | 任务类型             | 论文精度（pangu-2B6）               | 复现精度（pangu-2B6）                   | 样本类型       |
 | -------------------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------- | ----------------------------------- |------------|
@@ -40,5 +40,6 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 | [CMRC2017](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/cmrc2017) | 中文阅读理解（填空型阅读理解） | acc=38.00% | acc=37.5% | one-shot |
 
 ## 其他注意事项
+
 目前下游任务微调支持2卡、4卡和8卡执行
 评估和推理支持单卡、2卡、4卡和8卡执行
