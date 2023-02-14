@@ -21,7 +21,7 @@ Pangu-Alpha由以鹏城实验室为首的技术团队联合攻关，首次基于
 pip install TuningKit/Ascend_mindxsdk_mxTuningKit-3.0.0-py3-none-any.whl
 ```
 
-[软件下载](https://www.hiascend.com/software/mindx-sdk/community)，安装详细教程请参考[此文档](https://www.hiascend.com/document/detail/zh/mind-sdk/30rc3/mxtuningkit/tuningkitug/mxtuningug_0001.html)解决。
+[下载](https://www.hiascend.com/software/mindx-sdk/community) Ascend-mindxsdk-mxtuningkit_3.0.0_linux.tar.gz解压，安装详细教程请参考[此文档](https://www.hiascend.com/document/detail/zh/mind-sdk/30rc3/mxtuningkit/tuningkitug/mxtuningug_0001.html)解决。
 
 ### 2.ModelArts(AICC场景)安装
 
