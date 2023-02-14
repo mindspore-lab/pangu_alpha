@@ -34,6 +34,7 @@ Pangu-Alpha由以鹏城实验室为首的技术团队联合攻关，首次基于
 | 下游任务      | 任务类型             | 论文精度（pangu-2B6）               | 复现精度（pangu-2B6）                   | 样本类型       |
 | -------------------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------- | ----------------------------------- |------------|
 | [AFQMC](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/afqmc)       | 文本相似度                   | acc=64.62%                          | acc=68.9%                           | one-shot   |
+| [CMRC2017](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/cmrc2017) | 中文阅读理解（填空型阅读理解） | acc=38.00% | acc=37.5% | one-shot |
 
 ## 其他注意事项
 目前下游任务微调支持2卡、4卡和8卡执行

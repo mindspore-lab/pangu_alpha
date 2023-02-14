@@ -253,12 +253,12 @@ class PanguAlpha_Model(Cell):
         else:
             moe_config = MoEConfig(expert_num=1)
         # The shard setting of Transformer is set within the class StackedTransformer
-        self.blocks = TransformerEncoder(num_layers=config.num_layers - 1,  # 31
-                                         batch_size=config.batch_size,      # 1
-                                         hidden_size=config.hidden_size,    # 2560
-                                         ffn_hidden_size=config.ffn_hidden_size,  # 768
-                                         num_heads=config.num_heads,  # 32
-                                         seq_length=config.seq_length,   # 1024
+        self.blocks = TransformerEncoder(num_layers=config.num_layers - 1,
+                                         batch_size=config.batch_size,
+                                         hidden_size=config.hidden_size,
+                                         ffn_hidden_size=config.ffn_hidden_size,
+                                         num_heads=config.num_heads,
+                                         seq_length=config.seq_length,
                                          attention_dropout_rate=config.dropout_rate,
                                          hidden_dropout_rate=config.dropout_rate,
                                          lambda_func=set_parallel_configure_for_layer,
@@ -435,6 +435,7 @@ class PanguAlphaWithLoss(Cell):
         self.network = network
         self.pad_token = config.pad_token
         self.loss = loss
+        self.get_attention_mask = AttentionMask(config.seq_length)
 
         self.slice = P.StridedSlice().shard(((dp, 1),))
         self.not_equal = P.NotEqual().shard(((dp, 1), ()))
@@ -448,18 +449,21 @@ class PanguAlphaWithLoss(Cell):
     def construct(self, input_ids, input_position=None, attention_mask=None):
         r"""Forward process of the pangu alpha model"""
         tokens = self.slice(input_ids, (0, 0), (self.batch_size, -1), (1, 1))
-        input_position = self.slice(input_position, (0, 0), (self.batch_size, self.len), (1, 1))
-        decoder_attention_masks = self.slice_mask(attention_mask, (0, 0, 0), (self.batch_size, self.len, self.len),
-                                                  (1, 1, 1))
-        input_mask = F.cast(self.not_equal(tokens, self.pad_token),
-                            mstype.float32)
+        input_mask = F.cast(self.not_equal(tokens, self.pad_token), mstype.float32)
+        if input_position:
+            input_position = self.slice(input_position, (0, 0), (self.batch_size, self.len), (1, 1))
+        else:
+            input_position = F.tuple_to_array(F.make_range(self.seq_length))
+            input_position = P.Tile()(self.expand(input_position, 0), (self.batch_size, 1))
+        if attention_mask:
+            decoder_attention_masks = self.slice_mask(attention_mask, (0, 0, 0), (self.batch_size, self.len, self.len),
+                                                      (1, 1, 1))
+        else:
+            decoder_attention_masks = self.get_attention_mask(input_mask)
 
-        logits = self.network(tokens,
-                              input_position,
-                              decoder_attention_masks)
+        logits = self.network(tokens, input_position, decoder_attention_masks)
         # Get label corresponding to input tokens
-        labels = self.slice(input_ids, (0, 1), (self.batch_size, self.len + 1),
-                            (1, 1))
+        labels = self.slice(input_ids, (0, 1), (self.batch_size, self.len + 1), (1, 1))
         labels = P.Reshape()(labels, (-1,))
         input_mask = P.Reshape()(input_mask, (-1,))
         output = self.loss(logits, labels, input_mask)
