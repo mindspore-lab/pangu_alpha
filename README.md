@@ -29,7 +29,7 @@ pip install TuningKit/Ascend_mindxsdk_mxTuningKit-3.0.0-py3-none-any.whl
 pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-any.whl
 ```
 
-安装过程遇到问题请参考[此文档](https://gitee.com/foundation-models/tk-models/blob/master/TuningKit/%E5%BE%AE%E8%B0%83%E7%BB%84%E4%BB%B6(%E4%BA%91%E4%B8%8A%E5%9C%BA%E6%99%AF).md)解决。
+[软件下载](https://github.com/mindspore-lab/pangu_alpha/tree/master/mxTuningKit)，安装过程遇到问题请参考[此文档](https://github.com/mindspore-lab/pangu_alpha/blob/master/mxTuningKit/%E5%BE%AE%E8%B0%83%E7%BB%84%E4%BB%B6(%E4%BA%91%E4%B8%8A%E5%9C%BA%E6%99%AF).md)解决。
 
 
 ## 四、支持下游任务
