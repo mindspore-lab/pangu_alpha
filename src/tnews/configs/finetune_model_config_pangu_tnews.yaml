@@ -1,0 +1,20 @@
+params:
+  ckpt_name: 2B6_part
+  position_embedding_name: pangu_alpha_2B6_position_embedding.npy
+  top_query_embedding_name: pangu_alpha_2B6_top_query_embedding.npy
+  word_embedding_name: pangu_alpha_2B6_word_embedding.npy
+  ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
+  vocab_model_name: vocab.model
+  vocab_vocab_name: vocab.vocab
+  ckpt_dir: ckpt
+  mode: 2.6B
+  data_dev_name: dev.json
+  data_train_name: train.json
+  id2label_name: labels_ch.json
+  model_parallel_num: 4
+  per_batch_size: 4
+  save_checkpoint_steps: 500
+  epoch_size: 48
+  per_step_print: 40
+  sink_size: 10
+  # 当前参数为4卡下的参数，实际参数需要根据实际数据以及训练环境修改
