@@ -38,6 +38,8 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 | -------------------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------- | ----------------------------------- |------------|
 | [AFQMC](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/afqmc)       | 文本相似度                   | acc=64.62%                          | acc=68.9%                           | one-shot   |
 | [CMRC2017](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/cmrc2017) | 中文阅读理解（填空型阅读理解） | acc=38.00% | acc=37.5% | one-shot |
+| [TNEWS](https://gitee.com/foundation-models/tk-models/tree/master/models/pangu_alpha/tnews)       | 新闻短文本分类                 | acc=57.95%                          | acc=60.18%                          | one-shot   |
+
 
 ## 其他注意事项
 
