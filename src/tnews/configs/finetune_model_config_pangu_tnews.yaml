@@ -5,7 +5,6 @@ params:
   word_embedding_name: pangu_alpha_2B6_word_embedding.npy
   ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
   vocab_model_name: vocab.model
-  vocab_vocab_name: vocab.vocab
   ckpt_dir: ckpt
   mode: 2.6B
   data_dev_name: dev.json

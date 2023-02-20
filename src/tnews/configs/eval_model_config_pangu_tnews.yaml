@@ -9,7 +9,6 @@ params:
   data_train_name: train.json
   id2label_name: labels_ch.json
   vocab_model_name: vocab.model
-  vocab_vocab_name: vocab.vocab
   ckpt_dir: ckpt
   per_batch_size: 4
   sink_size: 2
