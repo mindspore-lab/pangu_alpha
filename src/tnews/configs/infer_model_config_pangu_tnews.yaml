@@ -1,0 +1,16 @@
+params:
+  distribute: True
+  test_sample_num: 2000
+  ckpt_name: 2B6_part
+  position_embedding_name: pangu_alpha_2B6_position_embedding.npy
+  top_query_embedding_name: pangu_alpha_2B6_top_query_embedding.npy
+  word_embedding_name: pangu_alpha_2B6_word_embedding.npy
+  ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
+  data_test_name: test.json
+  data_train_name: train.json
+  id2label_name: labels_ch.json
+  vocab_model_name: vocab.model
+  vocab_vocab_name: vocab.vocab
+  ckpt_dir: ckpt
+  per_batch_size: 1
+  mode: 2.6B
