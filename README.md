@@ -44,4 +44,5 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 ## 其他注意事项
 
 目前下游任务微调支持8卡执行
+
 评估和推理支持单卡、4卡和8卡执行
