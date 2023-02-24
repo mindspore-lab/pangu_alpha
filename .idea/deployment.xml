@@ -2,6 +2,20 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="chenzeng@192.168.88.170:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="118-normal">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/pangu_alpha_github" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="chenzeng-192">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/pangu_github" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="chenzeng@192.168.88.170:22 password">
         <serverdata>
           <mappings>
@@ -23,7 +37,7 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="zeng@192.168.88.192:22 password (1)">
+      <paths name="zeng@192.168.88.192:22 password">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
