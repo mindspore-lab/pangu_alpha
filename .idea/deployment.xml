@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="zeng@192.168.88.192:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="zeng-192" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
       <paths name="118-normal">
         <serverdata>
@@ -41,6 +41,13 @@
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zeng@192.168.88.192:22 password (1)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/zeng/pycharmProject/pangu_alpha_github" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
