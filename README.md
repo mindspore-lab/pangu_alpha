@@ -34,12 +34,13 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 
 ## 四、支持下游任务
 
-| 下游任务      | 任务类型             | 论文精度（pangu-2B6）               | 复现精度（pangu-2B6）                   | 样本类型       |
-| -------------------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------- | ----------------------------------- |------------|
-| [AFQMC](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/afqmc) | 文本相似度                   | acc=64.62%                          | acc=68.9%                           | one-shot   |
-| [CMRC2017](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/cmrc2017) | 中文阅读理解（填空型阅读理解） | acc=38.00% | acc=37.5% | one-shot |
-| [TNEWS](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/tnews) | 新闻短文本分类                 | acc=57.95%                          | acc=60.18%                          | one-shot   |
-| [CMRC2018](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/cmrc2018) | 中文阅读理解（句子级填空型阅读理解） | Em/F1=1.21/16.65 | Em/F1=1.06/16.53 | zero-shot |
+| 下游任务                                                                              | 任务类型             | 论文精度（pangu-2B6）  | 复现精度（pangu-2B6）   | 样本类型       |
+|-----------------------------------------------------------------------------------| --------------------------- |------------------|-------------------|------------|
+| [AFQMC](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/afqmc)       | 文本相似度                   | acc=64.62%       | acc=68.9%         | one-shot   |
+| [CMRC2017](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/cmrc2017) | 中文阅读理解（填空型阅读理解） | acc=38.00%       | acc=37.5%         | one-shot |
+| [TNEWS](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/tnews)       | 新闻短文本分类                 | acc=57.95%       | acc=60.18%        | one-shot   |
+| [CMRC2018](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/cmrc2018) | 中文阅读理解（句子级填空型阅读理解） | Em/F1=1.21/16.65 | Em/F1=1.06/16.53  | zero-shot |
+| [WebQA](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/webqa)       | 中文问答 | Em/F1=24/33.94   | Em/F1=23.77/33.86 | few_shot |
 
 
 ## 其他注意事项
