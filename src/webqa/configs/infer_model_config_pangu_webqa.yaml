@@ -1,6 +1,6 @@
 params:
   distribute: True
-  test_sample_num: 20
+  test_sample_num: 2000
   model_parallel_num: 4
   per_batch_size: 1
   ckpt_name: 2B6_part
