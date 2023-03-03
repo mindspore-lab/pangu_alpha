@@ -1,0 +1,17 @@
+params:
+  distribute: True
+  test_sample_num: 20
+  model_parallel_num: 4
+  per_batch_size: 1
+  ckpt_name: 2B6_part
+  position_embedding_name: pangu_alpha_2B6_position_embedding.npy
+  top_query_embedding_name: pangu_alpha_2B6_top_query_embedding.npy
+  word_embedding_name: pangu_alpha_2B6_word_embedding.npy
+  ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
+  data_test_name: me_test.ann.json
+  data_train_name: me_train.json
+  vocab_model_name: vocab.model
+  ckpt_dir: ckpt
+  mode: 2.6B
+  ckpt_name_prefix: filerted_
+  ckpt_num: 512

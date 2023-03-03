@@ -101,7 +101,7 @@ def load_model(model_config, is_eval):
         sink_size=model_config.sink_size,
         parallel_config=parallel_config,
     )
-    print(config, flush=True)
+    print("model_config is : ", config, flush=True)
 
     pangu = PanguAlpha(config)
     pangu = EvalNet_p(config, pangu, generate=True)
@@ -120,4 +120,5 @@ def load_model(model_config, is_eval):
     print("Start to load distributed checkpoint", flush=True)
     load_distributed_checkpoint(pangu, ckpt_file_list, predict_layout,
                                 os.path.join(model_config.ckpt_path, model_config.ckpt_strategy_name))
+    print("load model success! ")
     return pangu_model, config
