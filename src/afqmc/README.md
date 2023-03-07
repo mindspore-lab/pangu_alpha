@@ -18,7 +18,7 @@
 - 确认成功安装TuningKit中的mxTuningKit.whl
 - 生成RANK_TABLE_FILE所需文件
 ```bash
-python /path/tk-models/tools/hccl_tools.py --device_num "[0,8)" # 指定卡号[0,4)、[4,8)、[0,8)皆可
+python /path/mxTuningKit/hccl_tools.py --device_num "[0,8)" # 指定卡号[0,4)、[4,8)、[0,8)皆可
 ```
 
 ### 2.模型微调、评估和推理
