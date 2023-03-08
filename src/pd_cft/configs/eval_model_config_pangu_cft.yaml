@@ -1,0 +1,11 @@
+params:
+    distribute: True
+    position_embedding_name: pangu_alpha_2B6_position_embedding.npy
+    top_query_embedding_name: pangu_alpha_2B6_top_query_embedding.npy
+    word_embedding_name: pangu_alpha_2B6_word_embedding.npy
+    ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
+    data_dev_name: cft.test.human
+    data_test_name: cft.test.auto
+    vocab_model_name: vocab.model
+    ckpt_dir: ckpt
+    mode: 2.6B
