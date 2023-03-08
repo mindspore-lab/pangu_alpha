@@ -9,10 +9,10 @@ scenario:
     project_id: ***
 
     # 作业相关配置
-    data_path: obs://***//pangu_alpha/src/pd_cft/dataset/  # input data
+    data_path: obs://***/pangu_alpha/pd_cft/dataset/  # input data
     output_path: obs://***//pangu_alpha/pd_cft/output/  # model output, ckpt...
-    code_url: obs://***/pangu_alpha/ # model scripts
-    boot_file_path: obs://***/t/pangu_alpha/src/pd_cft/main/evaluate_main.py
+    code_url: obs://***/pangu_alpha/src/ # model scripts
+    boot_file_path: obs://***/pangu_alpha/src/pd_cft/main/infer_main.py
     ckpt_path: obs://***/pangu/cache/2B6/
     log_path: obs://***/tk-models/models/pangu_alpha/pd_cft/log/ # log
     user_image_url: ***
