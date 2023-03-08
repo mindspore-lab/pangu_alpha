@@ -610,6 +610,7 @@ class EvalNet_p(nn.Cell):
     PanguAlpha evaluation net
 
     Args:
+        config: pangualpha config
         backbone: backbone network of PanguAlpha
         generate: enable generate mode
 

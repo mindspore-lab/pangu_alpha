@@ -115,4 +115,5 @@ def load_model(model_config, is_eval):
 
     load_distributed_checkpoint(pangu, ckpt_file_list, predict_layout,
                                 os.path.join(model_config.ckpt_path, model_config.ckpt_strategy_name))
+    print("load model success!!")
     return model, config
