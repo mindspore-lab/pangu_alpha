@@ -28,11 +28,6 @@ from src.utils.tokenization_jieba import JIEBATokenizer
 from src.iflytek.main.data_process import load_iflytek_train_example_for_shot
 from src.iflytek.main.load_model import load_model
 
-os.environ['HCCL_CONNECT_TIMEOUT'] = '1800'
-rank_id = int(os.getenv('RANK_ID', default=0))
-device_id = int(os.getenv('DEVICE_ID', default=0))
-ms.set_seed(431436)
-
 
 def few_shot_infer(infer_config):
     model, config = load_model(infer_config, False)
@@ -86,7 +81,7 @@ def few_shot_infer(infer_config):
         tmp0 = [json.loads(x) for x in fid][:infer_config.test_sample_num]
         ground_truth = [tmp0[x] for x in np_rng.permutation(len(tmp0))]
 
-    zc_print_ind = 0
+    example_num = 0
     result_list = []
     if not tag_new_example:
         shot_to_example = load_iflytek_train_example_for_shot(infer_config.data_path, num_sample=zero_shot_num_sample,
@@ -94,7 +89,7 @@ def few_shot_infer(infer_config):
                                                               input_str_format=input_str_format)
         example = shot_to_example[task]
     for instance in ground_truth:
-        zc_print_ind += 1
+        example_num += 1
         if tag_new_example:
             shot_to_example = load_iflytek_train_example_for_shot(infer_config.data_path,
                                                                   num_sample=zero_shot_num_sample,
@@ -134,7 +129,8 @@ def few_shot_infer(infer_config):
         loss = np.concatenate([model.predict(x, y).asnumpy() for x, y in zip(tmp0, tmp1)])
         one_result = {'长文章': instance['sentence'], '应用程序标签': instance_tf_label[np.argmin(loss)]}
         result_list.append(one_result)
-
+        if example_num % 100 == 0:
+            print("example_num is : ", example_num, flush=True)
     all_results = {'result': result_list}
     with open(infer_out_file, 'w', encoding='utf-8') as out:
         json.dump(all_results, out, ensure_ascii=False)
