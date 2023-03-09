@@ -27,19 +27,22 @@ from src.csl.main.csl_prompts import do_infer_csl
 rank_id = int(os.getenv('RANK_ID', default=0))
 
 
-def shot_eval_main(eval_args):
-    eval_file_name = "infer_result.json"
-    eval_out_file = os.path.join(eval_args.output_path, eval_file_name)
-    print("result file:", eval_out_file)
+def eval_main(eval_args):
+    infer_file_name = "infer_result.json"
+    infer_out_file = os.path.join(eval_args.output_path, infer_file_name)
+    print("result file:", infer_out_file)
     model, config = load_model(eval_args, True)
 
     tokenizer = JIEBATokenizer(os.path.join(eval_args.ckpt_path, eval_args.vocab_model_name))
 
-    do_infer_csl(tokenizer, model, config, rank_id, eval_args.data_path, eval_args.output_path)
+    do_infer_csl(tokenizer, model, config, rank_id, eval_args.data_path, infer_out_file)
+
+    if os.path.isfile(infer_out_file):
+        os.chmod(infer_out_file, 0o750)
 
 
 if __name__ == "__main__":
     args = args_utils.get_args(True)
     set_parse(args)
     print('args : ', args)
-    shot_eval_main(args)
+    eval_main(args)

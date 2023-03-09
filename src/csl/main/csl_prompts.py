@@ -132,6 +132,7 @@ def do_infer_csl(tokenizer, model, config, rank_id, data_path_obs, save_path_obs
     print("infer csl start!")
     train_path = os.path.join(data_path_obs, "train.json")
     examples = generate_examples(train_path)
+    print("output file path is : ", save_path_obs)
 
     # 测试 one-shot精度
     results = {}
