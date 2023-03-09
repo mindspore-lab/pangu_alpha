@@ -18,7 +18,7 @@
 - 确认成功安装`TuningKit`中的`mxTuningKit.whl`
 - 生成RANK_TABLE_FILE所需文件
 ```bash
-python /path/tk-models/tools/hccl_tools.py --device_num "[0,8)" # 指定卡号[0,4)、[4,8)、[0,8)皆可
+python /path/mxTuningKit/hccl_tools.py --device_num "[0,8)" # 指定卡号[0,4)、[4,8)、[0,8)皆可
 ```
 
 ### 2.模型评估和推理
@@ -59,7 +59,7 @@ bash run_infer_dist.sh /path/hccl_xp_xxxx.json [DEVICE_NUM] [DEVICE_START]
 # ModelArts(AICC场景)使用
 ### 1.环境准备
 - 确认成功安装TuningKit中的mxFoundationModel.whl
-- 如需构建镜像，请参照[文档](https://gitee.com/foundation-models/tk-models/tree/master/tools/docker/modelarts)。
+- 如需构建镜像，请参照[文档](https://gitee.com/foundation-models/tk-models/tree/master/tools/docker/modelarts)，权限申请请联系仓库管理员。
 - `app_config.yaml`和`model_config.yaml`已经随着代码被上传到OBS中，注意在app_config.yaml中指定OBS中的各个路径。(主要修改`data_path、output_path、code_url、boot_file_path、log_path、user_image_url、pretrained_model_path或ckpt_path`等参数)
 
 ```bash

@@ -1,0 +1,23 @@
+scenario:
+
+  modelarts:
+    # 计算中心region配置
+    iam_endpoint: https://iam-pub.cn-central-221.ovaijisuan.com
+    obs_endpoint: https://obs.cn-central-221.ovaijisuan.com
+    modelarts_endpoint: https://modelarts.cn-central-221.ovaijisuan.com
+    region_name: ****
+    project_id: ****
+
+    # 作业相关配置
+    data_path: obs://***/dataset/CSL/  # input data
+    output_path: obs://***/pangu/CSL/outpath/eval/  # model output, ckpt...
+    code_url: obs://***/pangu_alpha/src/csl/ # model scripts
+    boot_file: obs://***/pangu_alpha/src/csl/main/evaluate_main.py
+    ckpt_path: obs://***/pangu/cache/2B6/
+    log_path: obs://***/pangu/csl/log/eval/ # log
+    user_image_url: ***
+
+    # 计算资源配置
+    pool_id: ***   # 专属资源池id, 共享资源池为None
+    node_num: 1
+    device_num: 4

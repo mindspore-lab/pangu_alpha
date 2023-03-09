@@ -18,7 +18,7 @@ echo "==========================================================================
 echo "Please run the script as: "
 echo "bash run_eval_dist.sh [RANK_TABLE_FILE] [DEVICE_NUM] [DEVICE_START]"
 echo "for example:"
-echo "bash run_distributed_train_and_eval.sh /path/hccl.json 4 0"
+echo "bash run_eval_dist.sh /path/hccl.json 4 0"
 echo "It is better to use absolute path."
 echo "=============================================================================================================="
 
@@ -29,21 +29,21 @@ DEVICE_START=$3
 export RANK_SIZE=$RANK_SIZE
 export RANK_TABLE_FILE=$1
 
-data_path=/path/pangu/afqmc/dataset/
-output_path=/path/pycharmproject/output/afqmc_13B/eval/
-ckpt_path=/path/pangu/13B
-model_config_path=${LOCAL_PATH}/configs/eval_model_config_pangu_13B_afqmc.yaml
+data_path=/store0/pangu_alpha/dureader/
+output_path=/store0/pangu_alpha/output_pangu/
+ckpt_path=/store0/pangu_alpha/pretrained_models/2B6/
+eval_model_config=${LOCAL_PATH}/configs/eval_model_config_pangu_dureader.yaml
 
 for ((i = 0; i < ${RANK_SIZE}; i++)); do
   export RANK_ID=$i
   export DEVICE_ID=$((i + DEVICE_START))
   echo DEVICE_ID=$DEVICE_ID
-  echo RANK_ID="$RANK_ID"
-  # infer
-  tk infer --quiet \
-           --boot_file_path="${LOCAL_PATH}"/main/infer_main.py \
-           --data_path=$data_path \
-           --output_path=$output_path \
-           --ckpt_path=$ckpt_path \
-           --model_config_path="$model_config_path" &
+  echo RANK_ID=$RANK_ID
+  # evaluate
+  tk evaluate --quiet \
+              --boot_file_path=${LOCAL_PATH}/main/evaluate_main.py \
+              --data_path=$data_path \
+              --output_path=$output_path \
+              --ckpt_path=$ckpt_path \
+              --model_config_path=$eval_model_config &
 done
