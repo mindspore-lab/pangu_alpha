@@ -184,7 +184,8 @@ def do_infer_csl(tokenizer, model, config, rank_id, data_path_obs, save_path_obs
             loss = np.concatenate([loss1, loss2])
             answers_pred = id_label[np.argmin(loss)]
             out = f"摘要：{sentence}, 关键词：{keyword}, {answers_pred}真实关键词"
-            print(f"id : {id}, out : {out}", flush=True)
+            if id % 100 == 0:
+                print(f"id : {id}, out : {out}", flush=True)
             results[shot].append(out)
         end_time = time.time()
         print(f"infer csl end, cost time: {end_time - start_time}", flush=True)
