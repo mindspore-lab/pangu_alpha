@@ -1,0 +1,22 @@
+scenario:
+  modelarts:
+    # 计算中心region配置
+    iam_endpoint: https://iam-pub.cn-central-221.ovaijisuan.com
+    modelarts_endpoint: https://modelarts.cn-central-221.ovaijisuan.com
+    obs_endpoint: https://obs.cn-central-221.ovaijisuan.com
+    project_id: ****
+    region_name: ****
+
+    # 作业相关配置
+    boot_file: obs://path/cmrc2019/src/evaluate_main.py
+    code_url: obs://path/pangu_task/
+    data_path: obs://path/dataset/CMRC2019/data/
+    log_path: obs://path/pangu/cmrc2019/log/eval/
+    output_path: obs://path/pangu/cmrc2019/output/eval/
+    ckpt_path: obs://path/pangu/cache/2B6/
+    user_image_url: ****
+
+    # 计算资源配置
+    pool_id: ****
+    node_num: 1
+    device_num: 4

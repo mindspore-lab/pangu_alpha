@@ -1,0 +1,12 @@
+params:
+  distribute: True
+  ckpt_name: 2B6_part
+  position_embedding_name: pangu_alpha_2B6_position_embedding.npy
+  top_query_embedding_name: pangu_alpha_2B6_top_query_embedding.npy
+  word_embedding_name: pangu_alpha_2B6_word_embedding.npy
+  ckpt_strategy_name: pangu_alpha_2B6_ckpt_strategy.ckpt
+  data_dev_name: zhidao.dev.json
+  vocab_model_name: vocab.model
+  ckpt_dir: ckpt
+  per_batch_size: 1
+  mode: 2.6B
