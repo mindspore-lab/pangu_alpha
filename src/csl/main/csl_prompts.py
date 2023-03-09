@@ -143,7 +143,6 @@ def do_infer_csl(tokenizer, model, config, rank_id, data_path_obs, save_path_obs
         # 根据实际数据集进行拼接
         data_path = os.path.join(data_path_obs, split + ".json")
         print("data_path : ", data_path)
-        # pred_path = os.path.join(save_path_obs, prefix + "_ans_" + shot + ".json")
 
         with open(data_path, "r", encoding="utf-8") as f:
             data_file = f.readlines()
@@ -184,7 +183,7 @@ def do_infer_csl(tokenizer, model, config, rank_id, data_path_obs, save_path_obs
             loss = np.concatenate([loss1, loss2])
             answers_pred = id_label[np.argmin(loss)]
             out = f"摘要：{sentence}, 关键词：{keyword}, {answers_pred}真实关键词"
-            if id % 100 == 0:
+            if id < 10 :
                 print(f"id : {id}, out : {out}", flush=True)
             results[shot].append(out)
         end_time = time.time()
