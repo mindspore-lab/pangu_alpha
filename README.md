@@ -43,7 +43,7 @@ pip install TuningKit/Ascend_mindxsdk_mxFoundationModel-1.0.1.RC2.b001-py3-none-
 | [WebQA](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/webqa)       | 中文问答 | Em/F1=24/33.94   | Em/F1=23.77/33.86 | few_shot |
 | [IFLYTEK](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/iflytek)       | 应用长文本分类 | acc=74.26%    | acc=73.72%  | zero-shot |
 | [PD&CFT](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/pd_cft)     | 中文阅读理解（填空型阅读理解）    | PD: acc=58.05%<br />CFT: acc=42.39% | PD: acc=58.56%<br />CFT: acc=42.31% | zero-shot  |
-
+| [DUREADER](https://github.com/mindspore-lab/pangu_alpha/tree/master/src/dureader) | 中文阅读理解（知识问答）       | Rouge-l=21.07% | Rouge-l=28.98% | zero_shot  |
 
 ## 其他注意事项
 
